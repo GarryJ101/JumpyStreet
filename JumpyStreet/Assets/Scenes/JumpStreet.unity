@@ -292,13 +292,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.2114892, y: -0, z: -0, w: 0.97738034}
+  m_LocalPosition: {x: -0.25, y: 2.73, z: -4.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 24.419, y: 0, z: 0}
 --- !u!1 &2129119936
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grassTile: {fileID: 5978634018487328024, guid: db6e398866f30db46bfc63d512d76725, type: 3}
   roadTile: {fileID: 3111226858227278551, guid: 5a8111df67433f34fa10a124f6e1fa74, type: 3}
-  WaterTile: {fileID: 6565792774359959147, guid: 1d5f486c02dda434baeede4cd7855a1c, type: 3}
+  waterTile: {fileID: 6565792774359959147, guid: 1d5f486c02dda434baeede4cd7855a1c, type: 3}
 --- !u!4 &2129119938
 Transform:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129119936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.72, z: 2.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
