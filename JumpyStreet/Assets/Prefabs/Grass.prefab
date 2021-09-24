@@ -115,3 +115,6 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: de90ececbb8f4634b93b6929dd44dbc4, type: 3}
   obstacleHeight: 1.25
   isMultiple: 1
+  maxMultipleAmount: 3
+  isRotating: 1
+  isLilyPad: 0

@@ -2,34 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Created by Garrett (mostly) & Josiah
+//Created by Garrett & Josiah
 
 public class TerrainGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject grassTile;
     [SerializeField] private GameObject roadTile;
     [SerializeField] private GameObject waterTile;
-
-    int secondRand;
+    public int pathXValue;
     int disPlayer = 12;
 
+
     Vector3 intPos = new Vector3(0, 0, 0);
+
+    private void Start()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            GenerateTerrain(1,5);
+        }
+    }
 
     private void Update()
     {
         if (Input.GetButtonDown ("Jump"))
         {
-            GenerateTerrain(Random.Range(1, 4));
+            GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
         }
     }
 
-    void GenerateTerrain(int terrain) //generates terrain, input is which terrain
-    { //terrain replaces firstRand for more flexability
-        if (terrain == 1)
+    void GenerateTerrain(int terrain, int chunks) //generates terrain, input is which terrain
+    { //terrain replaces firstRand, chunks replaces secondRand for more flexability
+        if (terrain == 1) //grass
         {
-            secondRand = Random.Range(1, 6);
+            pathXValue = Random.Range(-10, 11);
 
-            for (int i = 0; i < secondRand; i++) //Determines how many chuncks for this material
+            for (int i = 0; i < chunks; i++) //Determines how many chuncks for this material
             {
                 intPos = new Vector3(0, 0, disPlayer);
                 disPlayer += 1;
@@ -37,11 +45,11 @@ public class TerrainGenerator : MonoBehaviour
                 GrassIns.transform.position = intPos;
             }
         }
-        if (terrain == 2)
+        if (terrain == 2) //road
         {
-            secondRand = Random.Range(1, 6);
+            pathXValue = Random.Range(-10, 11);
 
-            for (int i = 0; i < secondRand; i++)
+            for (int i = 0; i < chunks; i++)
             {
                 intPos = new Vector3(0, 0, disPlayer);
                 disPlayer += 1;
@@ -49,11 +57,11 @@ public class TerrainGenerator : MonoBehaviour
                 RoadIns.transform.position = intPos;
             }
         }
-        if (terrain == 3)
+        if (terrain == 3) //water
         {
-            secondRand = Random.Range(1, 6);
+            //pathXValue = Random.Range(-10, 11);
 
-            for (int i = 0; i < secondRand; i++)
+            for (int i = 0; i < chunks; i++)
             {
                 intPos = new Vector3(0, 0, disPlayer);
                 disPlayer += 1;

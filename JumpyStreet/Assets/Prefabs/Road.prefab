@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8694303523294926777}
   - component: {fileID: 4432795082626572767}
   - component: {fileID: 1364018151127837743}
+  - component: {fileID: 1861625403870568265}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -96,3 +97,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1861625403870568265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3111226858227278551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a04c6610975fc64eb78a68efbb37257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+  - {fileID: 6542265754367848349, guid: 0d1527a28dfa40e4684991459416b2c1, type: 3}
+  obstacleHeight: 0.5
+  isMultiple: 0
+  maxMultipleAmount: 3
+  isRotating: 0
+  isLilyPad: 0
