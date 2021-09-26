@@ -111,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles:
   - {fileID: 6542265754367848349, guid: 0d1527a28dfa40e4684991459416b2c1, type: 3}
+  - {fileID: 7025019384558736672, guid: 7ffacee86a561da468c2a70581b6fcc9, type: 3}
+  - {fileID: 8988248350087990985, guid: cca9080c94ec8304ba1cf978f1ef7cf5, type: 3}
   obstacleHeight: 0.5
   isMultiple: 0
   maxMultipleAmount: 3

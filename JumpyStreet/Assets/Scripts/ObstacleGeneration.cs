@@ -7,6 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Creates (an) obsticle(s) inside of a single chunk
 /// </summary>
+
 public class ObstacleGeneration : MonoBehaviour
 {
     [SerializeField] GameObject[] obstacles; //array for multiple obstacles
@@ -14,9 +15,10 @@ public class ObstacleGeneration : MonoBehaviour
     [SerializeField] bool isMultiple; //if there needs to be multiple objects in one chunk
     [SerializeField] int maxMultipleAmount = 3; //the max amount of obstacles in one chunk
     [SerializeField] bool isRotating = false; //if the obstacle randomly rotates
-    [SerializeField] bool isLilyPad; //if the obstacles need to form a path (TODO)
+    [SerializeField] bool isLilyPad; //if the obstacles need to form a path
 
     TerrainGenerator generator;
+    float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,16 @@ public class ObstacleGeneration : MonoBehaviour
     {
         if (!isMultiple)
         {
-            //generates cars at random times
+            timer += Time.deltaTime;
+            if (timer >= 1f) //happens every second
+            {
+                timer = timer % 1f;
+                int spawnChance = Random.Range(0, 4); //1/4 chance to spawn object again
+                if(spawnChance == 0)
+                {
+                    GenerateCars();
+                }
+            }
         }
     }
 
@@ -61,11 +72,11 @@ public class ObstacleGeneration : MonoBehaviour
         }
     }
 
-    void GenerateCars() //like generate but simpler
+    void GenerateCars() //like generate but is at a fixed x position
     {
         int objRange = Random.Range(0, obstacles.Length); //picks which object to spawn in the array
         GameObject ObstIns = Instantiate(obstacles[objRange]) as GameObject;
-        ObstIns.transform.position = new Vector3(10, obstacleHeight, this.transform.position.z);
+        ObstIns.transform.position = new Vector3(12, obstacleHeight, this.transform.position.z);
     }
    
 }

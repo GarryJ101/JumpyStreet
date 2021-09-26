@@ -4,12 +4,16 @@ using UnityEngine;
 
 //Created by Garrett & Josiah
 
+/// <summary>
+/// Generates the terrain, selects a random chunk and instantiates it (sometimes having multiple chunks)
+/// </summary>
+
 public class TerrainGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject grassTile;
     [SerializeField] private GameObject roadTile;
     [SerializeField] private GameObject waterTile;
-    public int pathXValue;
+    public int pathXValue; //changes the xvalue of the path for lily pads
     int disPlayer = 12;
 
 
