@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 919132149155446097, guid: d9639f7e99565ea49929ea33f3062f0c, type: 3}
-  - {fileID: 919132149155446097, guid: d9639f7e99565ea49929ea33f3062f0c, type: 3}
-  - {fileID: 919132149155446097, guid: de90ececbb8f4634b93b6929dd44dbc4, type: 3}
+  - {fileID: 8596562198112709485, guid: b6020cad749bbcd48972e7039e9e5d19, type: 3}
+  - {fileID: 8596562198112709485, guid: b6020cad749bbcd48972e7039e9e5d19, type: 3}
+  - {fileID: 2857766890941269424, guid: 9344151452ed1c54e87e96a0cdc88a0f, type: 3}
   obstacleHeight: 1.25
   isMultiple: 1
   maxMultipleAmount: 3
