@@ -29,7 +29,7 @@ public class TerrainGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown ("Jump"))
+        if (Input.GetButtonDown ("up"))
         {
             GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
         }
