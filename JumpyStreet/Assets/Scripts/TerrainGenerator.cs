@@ -23,7 +23,7 @@ public class TerrainGenerator : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            GenerateTerrain(1,5);
+            GenerateTerrain(1,1);
         }
     }
 
