@@ -16,14 +16,19 @@ public class ObstacleGeneration : MonoBehaviour
     [SerializeField] int maxMultipleAmount = 3; //the max amount of obstacles in one chunk
     [SerializeField] bool isRotating = false; //if the obstacle randomly rotates
     [SerializeField] bool isLilyPad; //if the obstacles need to form a path
-
+    //Future me: have a limit that destroys this gameobject when the player goes to far, have a limit, to save on resources
     TerrainGenerator generator;
-    float timer;
+    float carTimer;
+    float heightOffset;
+    int lifespan;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!isMultiple)
+        generator = FindObjectOfType<TerrainGenerator>();
+        heightOffset = obstacleHeight + generator.floorHeight;
+
+        if (!isMultiple)
         {
             GenerateCars();
         }
@@ -35,23 +40,21 @@ public class ObstacleGeneration : MonoBehaviour
                 Generate(Random.Range(-10, 11));
             }
             if(isLilyPad)
-            {
-                generator = FindObjectOfType<TerrainGenerator>();
+            {               
                 Generate(generator.pathXValue);
                 //Generate(0);
             }
         }
-        
     }
 
     private void Update()
     {
         if (!isMultiple)
         {
-            timer += Time.deltaTime;
-            if (timer >= 1f) //happens every second
+            carTimer += Time.deltaTime;
+            if (carTimer >= 1f) //happens every second
             {
-                timer = timer % 1f;
+                carTimer = carTimer % 1f;
                 int spawnChance = Random.Range(0, 4); //1/4 chance to spawn object again
                 if(spawnChance == 0)
                 {
@@ -65,7 +68,7 @@ public class ObstacleGeneration : MonoBehaviour
     {
         int objRange = Random.Range(0, obstacles.Length); //picks which object to spawn in the array
         GameObject ObstIns = Instantiate(obstacles[objRange]) as GameObject;
-        ObstIns.transform.position = new Vector3(objPos, obstacleHeight, this.transform.position.z);
+        ObstIns.transform.position = new Vector3(objPos, heightOffset, this.transform.position.z);
         if(isRotating) //randomly rotates if it needs to (mostly for trees)
         {
             ObstIns.transform.Rotate(0, 0, Random.Range(0, 180));
@@ -76,7 +79,7 @@ public class ObstacleGeneration : MonoBehaviour
     {
         int objRange = Random.Range(0, obstacles.Length); //picks which object to spawn in the array
         GameObject ObstIns = Instantiate(obstacles[objRange]) as GameObject;
-        ObstIns.transform.position = new Vector3(12, obstacleHeight, this.transform.position.z);
+        ObstIns.transform.position = new Vector3(12, heightOffset, this.transform.position.z);
     }
    
 }

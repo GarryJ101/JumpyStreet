@@ -10,10 +10,20 @@ public class Bounce : MonoBehaviour
     float perc = 1;
     Vector3 startPos;
     Vector3 endPos;
+    int offset; //offset if the player goes backwards
 
     bool firstInput;
     public bool justJump;
-    
+
+    TerrainGenerator generator;
+    UIController ui;
+
+    private void Start()
+    {
+        generator = FindObjectOfType<TerrainGenerator>();
+        ui = FindObjectOfType<UIController>();
+    }
+
     void Update()
     {
         if(Input.GetButtonDown("up") || Input.GetButtonDown("down") || Input.GetButtonDown("left") || Input.GetButtonDown("right"))
@@ -39,10 +49,21 @@ public class Bounce : MonoBehaviour
         if (Input.GetButtonDown("up") && gameObject.transform.position == endPos)
         {
             endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+
+            if (offset == 0)
+            {               
+                generator.GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
+                ui.ScorePoints();
+            }
+            else
+            {
+                offset--;
+            }
         }
         if (Input.GetButtonDown("down") && gameObject.transform.position == endPos)
         {
             endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+            offset++;
         }
         if(firstInput == true)
         {
