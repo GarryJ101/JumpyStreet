@@ -24,4 +24,12 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Quit");
     }
+
+    public void ResetHighscore()
+    {
+        /*if(PlayerPrefs.HasKey("Highscore")) 
+        {//^^^ maybe use PlayerPrefs? That's what I'm thinking of but i'm not sure
+             PlayerPrefs.SetInt("Highscore", 0);
+        }*/
+    }
 }

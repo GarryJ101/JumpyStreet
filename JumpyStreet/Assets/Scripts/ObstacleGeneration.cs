@@ -17,15 +17,17 @@ public class ObstacleGeneration : MonoBehaviour
     [SerializeField] bool isRotating = false; //if the obstacle randomly rotates
     [SerializeField] bool isLilyPad; //if the obstacles need to form a path
     //Future me: have a limit that destroys this gameobject when the player goes to far, have a limit, to save on resources
+    [SerializeField] int lifespan = 50; //this sets how many chunks the player moves away until this chunk dissapears
     TerrainGenerator generator;
     float carTimer;
     float heightOffset;
-    int lifespan;
+    Bounce controller;
 
     // Start is called before the first frame update
     void Start()
     {
         generator = FindObjectOfType<TerrainGenerator>();
+        controller = FindObjectOfType<Bounce>();
         heightOffset = obstacleHeight + generator.floorHeight;
 
         if (!isMultiple)
@@ -45,6 +47,8 @@ public class ObstacleGeneration : MonoBehaviour
                 //Generate(0);
             }
         }
+
+
     }
 
     private void Update()
@@ -62,6 +66,12 @@ public class ObstacleGeneration : MonoBehaviour
                 }
             }
         }
+
+        /*if (Input.GetButtonDown("up") && controller.offset == 0) //TODO
+        {
+            DeteriorateLifespan();
+            print("aaa");
+        }*/
     }
 
     void Generate(int objPos) //objPos = xPosition of the obstacle to spawn
@@ -82,4 +92,15 @@ public class ObstacleGeneration : MonoBehaviour
         ObstIns.transform.position = new Vector3(12, heightOffset, this.transform.position.z);
     }
    
+    void DeteriorateLifespan() //lowers lifespan and destroys GO if dead (not to its own objects tho)
+    {
+        if(lifespan >= 1)
+        {
+            lifespan--;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

@@ -10,7 +10,7 @@ public class Bounce : MonoBehaviour
     float perc = 1;
     Vector3 startPos;
     Vector3 endPos;
-    int offset; //offset if the player goes backwards
+    public int offset; //offset if the player goes backwards
 
     bool firstInput;
     public bool justJump;
@@ -51,8 +51,12 @@ public class Bounce : MonoBehaviour
             endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
 
             if (offset == 0)
-            {               
-                generator.GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
+            {
+                if (generator.terrainOffset < 30) //generates only if there are less than 30 chunks ahead
+                {
+                   generator.GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
+                }
+                generator.terrainOffset--;
                 ui.ScorePoints();
             }
             else
