@@ -1306,7 +1306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088b6167f7f294d4191d8354906b95ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsAlive: 5
+  secondsAlive: 3
   startingVelocity: -10
 --- !u!65 &2497830418636241257
 BoxCollider:

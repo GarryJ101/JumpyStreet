@@ -14,6 +14,7 @@ public class Bounce : MonoBehaviour
 
     bool firstInput;
     public bool justJump;
+    public static bool isPlaying;
 
     TerrainGenerator generator;
     UIController ui;
@@ -26,6 +27,10 @@ public class Bounce : MonoBehaviour
 
     void Update()
     {
+        if(!isPlaying)
+        {
+            return;
+        }
         if(Input.GetButtonDown("up") || Input.GetButtonDown("down") || Input.GetButtonDown("left") || Input.GetButtonDown("right"))
         {
             if(perc == 1)

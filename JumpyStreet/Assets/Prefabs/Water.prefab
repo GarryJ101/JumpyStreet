@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.1587949, z: 0.9999999}
+  m_Center: {x: 0, y: 0.07939649, z: 0}
 --- !u!114 &6729881529912373425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,3 +116,4 @@ MonoBehaviour:
   maxMultipleAmount: 10
   isRotating: 0
   isLilyPad: 1
+  lifespan: 50
