@@ -978,8 +978,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -358.64395, y: 175.25676}
-  m_SizeDelta: {x: -717.288, y: -350.5134}
+  m_AnchoredPosition: {x: -358.50876, y: 186.11298}
+  m_SizeDelta: {x: -717.0177, y: -372.2259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1088981780
 MonoBehaviour:
@@ -1961,6 +1961,7 @@ MonoBehaviour:
   waterTile: {fileID: 6565792774359959147, guid: 1d5f486c02dda434baeede4cd7855a1c, type: 3}
   floorHeight: -0.85
   pathXValue: 0
+  terrainOffset: 0
 --- !u!4 &2079607832
 Transform:
   m_ObjectHideFlags: 0
@@ -2046,6 +2047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e109e3f3c24fcd488fa417e47bae3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: 0
   justJump: 0
 --- !u!4 &2117787668
 Transform:

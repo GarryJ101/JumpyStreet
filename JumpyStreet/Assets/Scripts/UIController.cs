@@ -53,7 +53,7 @@ public class UIController : MonoBehaviour
 
     public void OnClickReturnButton()
     {
-        SceneManager.LoadScene("frontend");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnClickQuitButton()
