@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] Text highscoreText;
 
     public int points = 0;
-    int highscore = 0;
+    public int highscore = 0;
 
 
     // Start is called before the first frame update
@@ -22,10 +22,10 @@ public class UIController : MonoBehaviour
         pointsText.text = points.ToString();
         overPanel.SetActive(false);
 
-        /*if(PlayerPrefs.HasKey("Highscore")) 
+        if(PlayerPrefs.HasKey("Highscore")) 
         {//^^^ maybe use PlayerPrefs? That's what I'm thinking of but i'm not sure
             highscore = PlayerPrefs.GetInt("Highscore");
-        }*/
+        }
     }
 
     public void ScorePoints()
@@ -43,7 +43,7 @@ public class UIController : MonoBehaviour
         overPanel.SetActive(true);
         overPointsText.text = ("Your score: " + points);
         highscoreText.text = ("Highscore: " + highscore);
-        //PlayerPrefs.SetInt("Highscore", highscore); <-- maybe use playerprefs???
+        PlayerPrefs.SetInt("Highscore", highscore); //<-- playerprefs???
     }
 
     public void OnClickResetButton()

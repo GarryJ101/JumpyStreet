@@ -18,11 +18,11 @@ public class TerrainGenerator : MonoBehaviour
     int disPlayer = 0;
     public int terrainOffset = 0; //so that it only generates when player is actually close
 
-    Vector3 intPos = new Vector3(0, 0, 0);
+    Vector3 intPos = new Vector3(0, 0, 0); //position of the lilypad path
 
     private void Start()
     {
-        GenerateTerrain(1, 1);
+        GenerateTerrain(1, 5);
         /*for (int i = 0; i < 5; i++)
         {
             GenerateTerrain(1, 1);
@@ -63,7 +63,7 @@ public class TerrainGenerator : MonoBehaviour
 
             for (int i = 0; i < chunks; i++)
             {
-                intPos = new Vector3(0, floorHeight, disPlayer);
+                intPos = new Vector3(0, floorHeight - 0.15f, disPlayer);
                 disPlayer += 1;
                 GameObject WaterIns = Instantiate(waterTile) as GameObject;
                 WaterIns.transform.position = intPos;
