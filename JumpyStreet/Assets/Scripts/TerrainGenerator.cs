@@ -31,43 +31,46 @@ public class TerrainGenerator : MonoBehaviour
     //input moved to Bounce
     public void GenerateTerrain(int terrain, int chunks) //generates terrain, input is which terrain
     { //terrain replaces firstRand, chunks replaces secondRand for more flexibility
-        if (terrain == 1) //grass
+        if (terrainOffset < 30) //generates only if there are less than 30 chunks ahead
         {
-            for (int i = 0; i < chunks; i++) //Determines how many chuncks for this material
+            if (terrain == 1) //grass
             {
-                intPos = new Vector3(0, floorHeight, disPlayer);
-                disPlayer += 1;
-                GameObject GrassIns = Instantiate(grassTile) as GameObject;
-                GrassIns.transform.position = intPos;
-                terrainOffset++;
+                for (int i = 0; i < chunks; i++) //Determines how many chuncks for this material
+                {
+                    intPos = new Vector3(0, floorHeight, disPlayer);
+                    disPlayer += 1;
+                    GameObject GrassIns = Instantiate(grassTile) as GameObject;
+                    GrassIns.transform.position = intPos;
+                    terrainOffset++;
+                }
+                pathXValue = Random.Range(-10, 11);
             }
-            pathXValue = Random.Range(-10, 11);
-        }
-        if (terrain == 2) //road
-        {           
-            for (int i = 0; i < chunks; i++)
+            if (terrain == 2) //road
             {
-                intPos = new Vector3(0, floorHeight, disPlayer);
-                disPlayer += 1;
-                GameObject RoadIns = Instantiate(roadTile) as GameObject;
-                RoadIns.transform.position = intPos;
-                terrainOffset++;
+                for (int i = 0; i < chunks; i++)
+                {
+                    intPos = new Vector3(0, floorHeight, disPlayer);
+                    disPlayer += 1;
+                    GameObject RoadIns = Instantiate(roadTile) as GameObject;
+                    RoadIns.transform.position = intPos;
+                    terrainOffset++;
+                }
+                pathXValue = Random.Range(-10, 11);
             }
-            pathXValue = Random.Range(-10, 11);
-        }
-        if (terrain == 3) //water
-        {
-            //pathXValue = Random.Range(-10, 11);
+            if (terrain == 3) //water
+            {
+                //pathXValue = Random.Range(-10, 11);
 
-            for (int i = 0; i < chunks; i++)
-            {
-                intPos = new Vector3(0, floorHeight - 0.15f, disPlayer);
-                disPlayer += 1;
-                GameObject WaterIns = Instantiate(waterTile) as GameObject;
-                WaterIns.transform.position = intPos;
-                terrainOffset++;
+                for (int i = 0; i < chunks; i++)
+                {
+                    intPos = new Vector3(0, floorHeight - 0.15f, disPlayer);
+                    disPlayer += 1;
+                    GameObject WaterIns = Instantiate(waterTile) as GameObject;
+                    WaterIns.transform.position = intPos;
+                    terrainOffset++;
+                }
             }
-        }
+        }       
         //print("Terrain offset: " + terrainOffset);
     }
 }

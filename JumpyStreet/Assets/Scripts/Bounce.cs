@@ -11,6 +11,7 @@ public class Bounce : MonoBehaviour
     Vector3 startPos;
     Vector3 endPos;
     public int offset; //offset if the player goes backwards
+    public int lifespan = 0; //goes down when the player progresses forward
 
     bool firstInput;
     public bool justJump;
@@ -61,15 +62,13 @@ public class Bounce : MonoBehaviour
         {
             endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
 
-            if (offset == 0)
+            if (offset == 0) //new progress
             {
-                if (generator.terrainOffset < 30) //generates only if there are less than 30 chunks ahead
-                {
-                   generator.GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
-                }
+                generator.GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));               
                 generator.terrainOffset--;
                 ui.ScorePoints();
                 barrier.MoveForward();
+                lifespan--;
             }
             else
             {
