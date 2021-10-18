@@ -19,22 +19,20 @@ public class TerrainGenerator : MonoBehaviour
     public int terrainOffset = 0; //so that it only generates when player is actually close
 
     Vector3 intPos = new Vector3(0, 0, 0); //position of the lilypad path
+    public bool isStart = false; //if player pressed a button yet
+
+    public GameController playerController; //made here so that it's only called once
 
     private void Start()
     {
-        GenerateTerrain(1, 5);
-        /*for (int i = 0; i < 5; i++)
-        {
-            GenerateTerrain(1, 1);
-        }*/      
+        playerController = FindObjectOfType<GameController>();
+        GenerateTerrain(1, 5);     
     }
     //input moved to Bounce
     public void GenerateTerrain(int terrain, int chunks) //generates terrain, input is which terrain
     { //terrain replaces firstRand, chunks replaces secondRand for more flexibility
         if (terrain == 1) //grass
         {
-            pathXValue = Random.Range(-10, 11);
-
             for (int i = 0; i < chunks; i++) //Determines how many chuncks for this material
             {
                 intPos = new Vector3(0, floorHeight, disPlayer);
@@ -43,11 +41,10 @@ public class TerrainGenerator : MonoBehaviour
                 GrassIns.transform.position = intPos;
                 terrainOffset++;
             }
+            pathXValue = Random.Range(-10, 11);
         }
         if (terrain == 2) //road
-        {
-            pathXValue = Random.Range(-10, 11);
-
+        {           
             for (int i = 0; i < chunks; i++)
             {
                 intPos = new Vector3(0, floorHeight, disPlayer);
@@ -56,6 +53,7 @@ public class TerrainGenerator : MonoBehaviour
                 RoadIns.transform.position = intPos;
                 terrainOffset++;
             }
+            pathXValue = Random.Range(-10, 11);
         }
         if (terrain == 3) //water
         {
@@ -70,6 +68,6 @@ public class TerrainGenerator : MonoBehaviour
                 terrainOffset++;
             }
         }
-        print("Terrain offset: " + terrainOffset);
+        //print("Terrain offset: " + terrainOffset);
     }
 }

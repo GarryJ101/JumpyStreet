@@ -40,6 +40,10 @@ public class Bounce : MonoBehaviour
                 firstInput = true;
                 justJump = true;
             }
+            if (!generator.isStart)
+            {
+                generator.isStart = true;
+            }
         }
         startPos = gameObject.transform.position;
 
