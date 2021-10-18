@@ -15,10 +15,10 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private GameObject waterTile;
     public float floorHeight = -0.85f; //the height offset for the floor
     public int pathXValue; //changes the xvalue of the path for lily pads
-    int disPlayer = 0;
+    int disPlayer = 0; //tiles chunks right after the first
     public int terrainOffset = 0; //so that it only generates when player is actually close
 
-    Vector3 intPos = new Vector3(0, 0, 0); //position of the lilypad path
+    Vector3 intPos = new Vector3(0, 0, 0); //position of the chunk to generate
     public bool isStart = false; //if player pressed a button yet
 
     public GameController playerController; //made here so that it's only called once

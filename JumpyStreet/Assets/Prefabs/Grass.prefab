@@ -118,3 +118,4 @@ MonoBehaviour:
   maxMultipleAmount: 3
   isRotating: 1
   isLilyPad: 0
+  lifespan: 30

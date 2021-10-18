@@ -78,6 +78,10 @@ public class ObstacleGeneration : MonoBehaviour
         int objRange = Random.Range(0, obstacles.Length); //picks which object to spawn in the array
         GameObject ObstIns = Instantiate(obstacles[objRange]) as GameObject;
         ObstIns.transform.position = new Vector3(objPos, heightOffset, this.transform.position.z);
+        //ObstIns.transform.SetParent(transform, true);
+        //Vector3 scale = ObstIns.transform.localScale;
+        ObstIns.transform.parent = transform;
+        //ObstIns.transform.localScale = scale;
         if(isRotating) //randomly rotates if it needs to (mostly for trees)
         {
             ObstIns.transform.Rotate(0, 0, Random.Range(0, 180));

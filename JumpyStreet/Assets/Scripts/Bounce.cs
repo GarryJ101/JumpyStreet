@@ -18,11 +18,13 @@ public class Bounce : MonoBehaviour
 
     TerrainGenerator generator;
     UIController ui;
+    BarrierController barrier;
 
     private void Start()
     {
         generator = FindObjectOfType<TerrainGenerator>();
         ui = FindObjectOfType<UIController>();
+        barrier = FindObjectOfType<BarrierController>();
     }
 
     void Update()
@@ -67,6 +69,7 @@ public class Bounce : MonoBehaviour
                 }
                 generator.terrainOffset--;
                 ui.ScorePoints();
+                barrier.MoveForward();
             }
             else
             {
@@ -77,6 +80,7 @@ public class Bounce : MonoBehaviour
         {
             endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
             offset++;
+            barrier.offset++;
         }
         if(firstInput == true)
         {
