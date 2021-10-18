@@ -1404,6 +1404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8937058561897230807}
   - component: {fileID: 3806653994813024500}
+  - component: {fileID: 1477576648099636236}
   m_Layer: 0
   m_Name: treeTen
   m_TagString: Untagged
@@ -1450,8 +1451,24 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8596562198112709485}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.44424987, y: 0.74673545, z: 1.5014116}
   m_Center: {x: 0, y: 3.4523962e-16, z: -0.22570586}
+--- !u!54 &1477576648099636236
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8596562198112709485}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
