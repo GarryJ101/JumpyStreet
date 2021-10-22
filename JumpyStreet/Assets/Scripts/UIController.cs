@@ -40,6 +40,7 @@ public class UIController : MonoBehaviour
 
     public void DisplayGameOver()
     {
+        Time.timeScale = 0.25f;
         overPanel.SetActive(true);
         overPointsText.text = ("Your score: " + points);
         highscoreText.text = ("Highscore: " + highscore);
@@ -48,16 +49,19 @@ public class UIController : MonoBehaviour
 
     public void OnClickResetButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void OnClickReturnButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void OnClickQuitButton()
     {
+        Time.timeScale = 1f;
         Application.Quit();
     }
 }

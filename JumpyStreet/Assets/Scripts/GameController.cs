@@ -24,12 +24,13 @@ public class GameController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         if(other.gameObject.CompareTag("Death"))
         {
             Bounce.isPlaying = false;
             
             ui.DisplayGameOver();
             
-        }
+        }*/
     }
 }

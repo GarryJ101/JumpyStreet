@@ -17,6 +17,7 @@ public class BarrierController : MonoBehaviour
 
     public void MoveForward()
     {
+        
         offset--;
         if(offset <= 0)
         {
