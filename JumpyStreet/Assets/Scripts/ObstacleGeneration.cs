@@ -15,21 +15,17 @@ public class ObstacleGeneration : MonoBehaviour
     [SerializeField] bool isMultiple; //if there needs to be multiple objects in one chunk
     [SerializeField] int maxMultipleAmount = 3; //the max amount of obstacles in one chunk
     [SerializeField] bool isRotating = false; //if the obstacle randomly rotates
-    [SerializeField] bool isLilyPad; //if the obstacles need to form a path
-
-    [SerializeField] int lifespan = 30; //this sets how many chunks the player moves away until this chunk dissapears
+    [SerializeField] bool isLilyPad; //if the obstacles need to form a path  
 
     TerrainGenerator generator;
 
     float carTimer;
     float heightOffset;
-    Bounce controller;
 
     // Start is called before the first frame update
     void Start()
     {
         generator = FindObjectOfType<TerrainGenerator>();
-        controller = FindObjectOfType<Bounce>();
         heightOffset = obstacleHeight + generator.floorHeight;
 
         if (!isMultiple)
@@ -72,23 +68,23 @@ public class ObstacleGeneration : MonoBehaviour
     }
 
     void Generate(int objPos) //objPos = xPosition of the obstacle to spawn
-    {        
+    {
+        //print(generator.pathXValue);
         int objRange = Random.Range(0, obstacles.Length); //picks which object to spawn in the array
         GameObject ObstIns = Instantiate(obstacles[objRange]) as GameObject;
         ObstIns.transform.position = new Vector3(objPos, heightOffset, this.transform.position.z);
-        //Vector3 scale = ObstIns.transform.localScale;
         ObstIns.transform.parent = transform;
 
         if(isRotating) //randomly rotates if it needs to (mostly for trees)
         {
             ObstIns.transform.Rotate(0, 0, Random.Range(0, 180));
-            if (objPos == generator.pathXValue) //i mean this IS exclusive to trees
+            if (objPos == generator.pathXValue)
             {
                 print("tree in lily pad path, removing"); //not working?
                 Destroy(ObstIns); //destroys if in lily pad path
             }
         }
-        if (generator.isStart && objPos == controller.gameObject.transform.position.x)
+        if (!generator.isStart && objPos == 0)
         { //prevents objects spawning on player at start
             Destroy(ObstIns);
         }
@@ -99,18 +95,6 @@ public class ObstacleGeneration : MonoBehaviour
         int objRange = Random.Range(0, obstacles.Length); //picks which object to spawn in the array
         GameObject ObstIns = Instantiate(obstacles[objRange]) as GameObject;
         ObstIns.transform.position = new Vector3(12, heightOffset, this.transform.position.z);
-    }
-   
-    void DeteriorateLifespan() //lowers lifespan and destroys GO if dead (not to its own objects tho)
-    {
-        if(lifespan >= 1)
-        {
-            lifespan--;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
     }
 
 }

@@ -23,10 +23,10 @@ public class GameController : MonoBehaviour
         RaycastHit hit;
         //casts a ray down
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f))
-        {
-            Debug.Log(hit.transform.gameObject.tag);
+        {           
             if(hit.transform.gameObject.CompareTag("Death")) //if player hits water or car
             {
+                Debug.Log(hit.transform.gameObject.tag);
                 Bounce.isPlaying = false;
                 ui.DisplayGameOver();
             }

@@ -11,7 +11,6 @@ public class Bounce : MonoBehaviour
     Vector3 startPos;
     Vector3 endPos;
     public int offset; //offset when the player goes backwards
-    public int lifespan = 0; //goes down when the player progresses forward (useless)
     [SerializeField] LayerMask layerMask;
 
     bool firstInput;
@@ -35,6 +34,7 @@ public class Bounce : MonoBehaviour
 
         if (!isPlaying)
         {
+            justJump = false;
             return;
         }
         if(Input.GetButtonDown("up") || Input.GetButtonDown("down") || Input.GetButtonDown("left") || Input.GetButtonDown("right"))
@@ -57,27 +57,22 @@ public class Bounce : MonoBehaviour
         {
             //if player is next to an object
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1f, layerMask))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
+            {               
                 Debug.Log("Hit on right");
             }
             else
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 1000, Color.white);
+            {            
                 endPos = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
             }           
         }
         if (Input.GetButtonDown("left") && gameObject.transform.position == endPos)
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1f, layerMask))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.yellow);
+            {              
                 Debug.Log("Hit on left");
             }
             else
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * 1000, Color.white);
-
                 endPos = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
             }            
         }
@@ -85,14 +80,11 @@ public class Bounce : MonoBehaviour
         {
             //if player is in front of an obstacle
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1f, layerMask))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            {              
                 Debug.Log("Hit in front");
             }
             else //if player is not in front of an obstacle
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-
                 endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
                 if (offset == 0) //new progress
                 {
@@ -100,7 +92,6 @@ public class Bounce : MonoBehaviour
                     generator.terrainOffset--;
                     ui.ScorePoints();
                     barrier.MoveForward();
-                    lifespan--;
                 }
                 else //removes offset
                 {
@@ -111,14 +102,11 @@ public class Bounce : MonoBehaviour
         if (Input.GetButtonDown("down") && gameObject.transform.position == endPos)
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 1f, layerMask))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hit.distance, Color.yellow);
+            {                
                 Debug.Log("Hit in back");
             }
             else
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * 1000, Color.white);
-
                 endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
                 offset++;
                 barrier.offset++;
