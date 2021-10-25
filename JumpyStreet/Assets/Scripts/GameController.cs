@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject deathScreen;
+    [SerializeField] LayerMask layerMask;
     UIController ui;
     // Start is called before the first frame update
     void Start()
@@ -19,18 +20,16 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        /*
-        if(other.gameObject.CompareTag("Death"))
+        RaycastHit hit;
+        //casts a ray down
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f))
         {
-            Bounce.isPlaying = false;
-            
-            ui.DisplayGameOver();
-            
-        }*/
+            Debug.Log(hit.transform.gameObject.tag);
+            if(hit.transform.gameObject.CompareTag("Death")) //if player hits water or car
+            {
+                Bounce.isPlaying = false;
+                ui.DisplayGameOver();
+            }
+        }
     }
 }

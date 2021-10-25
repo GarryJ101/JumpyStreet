@@ -19,6 +19,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         pointsText.text = points.ToString();
         overPanel.SetActive(false);
 

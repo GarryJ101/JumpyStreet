@@ -2450,6 +2450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 0
   lifespan: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
   justJump: 0
 --- !u!4 &2117787668
 Transform:

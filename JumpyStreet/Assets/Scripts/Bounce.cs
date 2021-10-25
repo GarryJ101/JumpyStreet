@@ -10,8 +10,9 @@ public class Bounce : MonoBehaviour
     float perc = 1;
     Vector3 startPos;
     Vector3 endPos;
-    public int offset; //offset if the player goes backwards
-    public int lifespan = 0; //goes down when the player progresses forward
+    public int offset; //offset when the player goes backwards
+    public int lifespan = 0; //goes down when the player progresses forward (useless)
+    [SerializeField] LayerMask layerMask;
 
     bool firstInput;
     public bool justJump;
@@ -30,7 +31,9 @@ public class Bounce : MonoBehaviour
 
     void Update()
     {
-        if(!isPlaying)
+        RaycastHit hit;
+
+        if (!isPlaying)
         {
             return;
         }
@@ -52,34 +55,75 @@ public class Bounce : MonoBehaviour
 
         if(Input.GetButtonDown("right") && gameObject.transform.position == endPos)
         {
-            endPos = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-        }
-        if (Input.GetButtonDown("left") && gameObject.transform.position == endPos)
-        {
-            endPos = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
-        }
-        if (Input.GetButtonDown("up") && gameObject.transform.position == endPos)
-        {
-            endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-
-            if (offset == 0) //new progress
+            //if player is next to an object
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1f, layerMask))
             {
-                generator.GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));               
-                generator.terrainOffset--;
-                ui.ScorePoints();
-                barrier.MoveForward();
-                lifespan--;
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
+                Debug.Log("Hit on right");
             }
             else
             {
-                offset--;
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 1000, Color.white);
+                endPos = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+            }           
+        }
+        if (Input.GetButtonDown("left") && gameObject.transform.position == endPos)
+        {
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1f, layerMask))
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.yellow);
+                Debug.Log("Hit on left");
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * 1000, Color.white);
+
+                endPos = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+            }            
+        }
+        if (Input.GetButtonDown("up") && gameObject.transform.position == endPos)
+        {
+            //if player is in front of an obstacle
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1f, layerMask))
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                Debug.Log("Hit in front");
+            }
+            else //if player is not in front of an obstacle
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+
+                endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                if (offset == 0) //new progress
+                {
+                    generator.GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
+                    generator.terrainOffset--;
+                    ui.ScorePoints();
+                    barrier.MoveForward();
+                    lifespan--;
+                }
+                else //removes offset
+                {
+                    offset--;
+                }
             }
         }
         if (Input.GetButtonDown("down") && gameObject.transform.position == endPos)
         {
-            endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-            offset++;
-            barrier.offset++;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 1f, layerMask))
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hit.distance, Color.yellow);
+                Debug.Log("Hit in back");
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * 1000, Color.white);
+
+                endPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+                offset++;
+                barrier.offset++;
+            }
+            
         }
         if(firstInput == true)
         {
@@ -97,6 +141,39 @@ public class Bounce : MonoBehaviour
                 
             }
         }
-        
+
+        //This draws the rays in the editor
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1f, layerMask))
+        {//forward
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        }
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1f, layerMask))
+        {//left
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.yellow);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * 1000, Color.white);
+        }
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1f, layerMask))
+        {//right
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 1000, Color.white);
+        }
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 1f, layerMask))
+        {//back
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * hit.distance, Color.yellow);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * 1000, Color.white);
+        }
     }
 }
