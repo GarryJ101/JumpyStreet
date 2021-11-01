@@ -15,6 +15,7 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private GameObject waterTile;
     public float floorHeight = -0.85f; //the height offset for the floor
     public int pathXValue; //changes the xvalue of the path for lily pads
+    public bool lilypadStart;
     int disPlayer = 0; //tiles chunks right after the first
     public int terrainOffset = 0; //so that it only generates when player is actually close
 
@@ -26,7 +27,11 @@ public class TerrainGenerator : MonoBehaviour
     private void Start()
     {
         playerController = FindObjectOfType<GameController>();
-        GenerateTerrain(1, 5);     
+        GenerateTerrain(1, 5);
+        for (int i = 0; i < 10; i++)
+        {
+            GenerateTerrain(Random.Range(1, 4), Random.Range(1, 6));
+        }
     }
     //input moved to Bounce
     public void GenerateTerrain(int terrain, int chunks) //generates terrain, input is which terrain

@@ -68,12 +68,19 @@ public class ObstacleGeneration : MonoBehaviour
             }
             if(isLilyPad)
             {               
-                Generate(generator.pathXValue);
+                Generate(generator.pathXValue);               
+                if (generator.lilypadStart)
+                {
+                    Generate(generator.pathXValue + 1);
+                    Generate(generator.pathXValue - 1);
+                    generator.lilypadStart = false;
+                }               
             }            
         }
         if (!isLilyPad) //sets the generator's lily pad path to a random X coord
-        {
+        {           
             generator.pathXValue = Random.Range(-10, 11);
+            generator.lilypadStart = true;
         }
     }
 
@@ -116,7 +123,7 @@ public class ObstacleGeneration : MonoBehaviour
         if (!generator.isStart && objPos == 0)
         { //prevents objects spawning on player at start
             Destroy(ObstIns);
-        }       
+        }
     }
 
     void GenerateCars() //like generate but is at a fixed x position
