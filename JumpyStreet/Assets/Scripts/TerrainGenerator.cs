@@ -42,8 +42,11 @@ public class TerrainGenerator : MonoBehaviour
                     GameObject GrassIns = Instantiate(grassTile) as GameObject;
                     GrassIns.transform.position = intPos;
                     terrainOffset++;
+                    if(chunks == 1)
+                    {
+                        GrassIns.GetComponent<ObstacleGeneration>().isSingle = true;
+                    }
                 }
-                pathXValue = Random.Range(-10, 11);
             }
             if (terrain == 2) //road
             {
@@ -55,12 +58,9 @@ public class TerrainGenerator : MonoBehaviour
                     RoadIns.transform.position = intPos;
                     terrainOffset++;
                 }
-                pathXValue = Random.Range(-10, 11);
             }
             if (terrain == 3) //water
             {
-                //pathXValue = Random.Range(-10, 11);
-
                 for (int i = 0; i < chunks; i++)
                 {
                     intPos = new Vector3(0, floorHeight - 0.15f, disPlayer);

@@ -214,11 +214,12 @@ MonoBehaviour:
   - {fileID: 7025019384558736672, guid: 7ffacee86a561da468c2a70581b6fcc9, type: 3}
   - {fileID: 8988248350087990985, guid: cca9080c94ec8304ba1cf978f1ef7cf5, type: 3}
   obstacleHeight: 0.5
-  isMultiple: 0
   maxMultipleAmount: 3
-  isRotating: 0
+  isTree: 0
   isLilyPad: 0
-  lifespan: 30
+  isCar: 1
+  obstacle: 2
+  isSingle: 0
 --- !u!114 &1760602847457542256
 MonoBehaviour:
   m_ObjectHideFlags: 0

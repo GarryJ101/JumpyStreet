@@ -51,9 +51,9 @@ MonoBehaviour:
   obstacleHeight: 1.25
   isMultiple: 1
   maxMultipleAmount: 3
-  isRotating: 1
+  isTree: 1
   isLilyPad: 0
-  lifespan: 30
+  isSingle: 0
 --- !u!1 &2353967918458929267
 GameObject:
   m_ObjectHideFlags: 0

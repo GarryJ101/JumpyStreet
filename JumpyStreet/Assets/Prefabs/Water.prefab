@@ -308,11 +308,12 @@ MonoBehaviour:
   obstacles:
   - {fileID: 768618068827246560, guid: 7a829b90526dca14d87d3d8b250bd42a, type: 3}
   obstacleHeight: 0.2
-  isMultiple: 1
   maxMultipleAmount: 10
-  isRotating: 0
+  isTree: 0
   isLilyPad: 1
-  lifespan: 50
+  isCar: 0
+  obstacle: 1
+  isSingle: 0
 --- !u!114 &1153976815196690031
 MonoBehaviour:
   m_ObjectHideFlags: 0

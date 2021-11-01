@@ -10,7 +10,7 @@ public class ChunkDespawner : MonoBehaviour
         if (other.gameObject.tag == "Despawn")
         {
             Destroy(parent.gameObject);
-            print("Destroyed:" + this.gameObject.name);
+            //print("Destroyed:" + this.gameObject.name);
         }
     }
 
